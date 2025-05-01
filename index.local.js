@@ -1,13 +1,7 @@
 import 'dotenv/config';
 import express from "express";
 
-import { coderAgent } from "./dist/a2a/agents/coder/index.js";
-import { A2AService } from "./dist/a2a/service/service.js";
-
-import {
-    handleAgentChatMessage
-} from "@agentic-profile/chat";
-
+import { handleAgentChatMessage } from "@agentic-profile/chat";
 import {
     agentHooks,
     setAgentHooks
@@ -18,6 +12,9 @@ import {
     resolveAgentSession as agentSessionResolver
 } from "@agentic-profile/express-common";
 
+import { coderAgent } from "./dist/a2a/agents/coder/index.js";
+import { A2AService } from "./dist/a2a/service/service.js";
+import { errorHandler } from "./dist/a2a/service/error.js";
 import {
     ensureCreditBalance,
     generateChatReply,
@@ -70,6 +67,10 @@ const authHandler = {
 };
 const a2aService2 = new A2AService( coderAgent, { authHandler } );
 app.use("/users/:uid/coder", a2aService2.routes() );
+
+
+// Basic error handler for a2a services
+app.use( errorHandler );
 
 
 //==== Example 3: Agent Profile REST agent with authentication ====
