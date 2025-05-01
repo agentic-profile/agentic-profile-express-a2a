@@ -1,5 +1,5 @@
 {
-    "name": "Coder Agent",
+    "name": "Coder Agent that requires Agentic Profile authentication",
     "description": "An agent that generates code based on natural language instructions and streams file outputs.",
     "url": "http://localhost:3003/users/2/coder/",
     "provider": {

@@ -107,27 +107,47 @@ NOTE: The following instructions assume you have created an agentic service at h
     $ node scripts/send-chat-message -a https://agents.smarterdating.ai/users/2/agent-chats
 
 
-## Test the A2A agent
+## Test the different agents
 
 1. Make sure the server is started:
 
     $ yarn dev
 
-2. Fron a different terminal window, start the A2A client:
+2. Fron a different terminal window, start the A2A client with the default agent that doesnt require authentication
 
     ```bash
-    npm run a2a:cli
+    yarn a2a:cli
     ```
 
 3. Type in a prompt for the A2A client, such as "Write a program that says Hello world!"
 
+4. Fron a different terminal window, start the A2A client using the agent card, but still no authentication
 
-## More testing with Curl
+    ```bash
+    yarn a2a:cli -p http://localhost:3003/agents/coder/
+    ```
 
-    $ curl -X POST http://localhost:3003/agents/coder
+5. Fron a different terminal window, start the A2A client using the Agentic Profile, but still no authentication
 
-    $ curl -X POST http://localhost:3003/users/2/coder
+    ```bash
+    yarn a2a:cli -p did:web:localhost%3A3003:agents:coder#a2a-coder
+    ```
 
-    $ curl -v -X PUT http://localhost:3003/users/2/agent-chats
+6. Fron a different terminal window, start the A2A client with the well-known agent
 
+    ```bash
+    yarn a2a:cli -p http://localhost:3003/
+    ```
+
+7. Fron a different terminal window, start the A2A client with an Agentic Profile and authentication
+
+    ```bash
+    yarn a2a:cli -p did:web:localhost%3A3003:users:2:coder#a2a-coder -u "#agent-chat"
+    ```
+
+7. Fron a different terminal window, start the A2A client with the well-known Agentic Profile and authentication
+
+    ```bash
+    yarn a2a:cli -i "global-me" -p did:web:localhost%3A3003#a2a-coder
+    ```
 

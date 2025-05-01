@@ -4,7 +4,7 @@
         "https://w3id.org/security/suites/jws-2020/v1",
         "https://iamagentic.org/ns/agentic-profile/v1"
     ],
-    "id": "did:web:undefined",
+    "id": "did:web:localhost%3A3003",
     "verificationMethod": [
         {
             "id": "#identity-key",
@@ -19,13 +19,13 @@
     ],
     "service": [
         {
-            "name": "presence agent",
-            "id": "#agent-presence",
-            "type": "Agentic/presence",
-            "serviceEndpoint": "https://undefined/presence",
+            "name": "Secure Coder",
+            "id": "#a2a-coder",
+            "type": "A2A",
+            "serviceEndpoint": "http://localhost:3003/users/2/coder/",
             "capabilityInvocation": [
                 {
-                    "id": "#agent-presence-key-0",
+                    "id": "#agent-coder-key-0",
                     "type": "JsonWebKey2020",
                     "publicKeyJwk": {
                         "kty": "OKP",

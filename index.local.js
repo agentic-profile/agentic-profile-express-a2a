@@ -62,10 +62,7 @@ app.use("/agents/coder", a2aService1.routes() );
 
 
 //==== Example 2: A2A agent with authentication ====
-const authHandler = {
-    agentSessionResolver
-};
-const a2aService2 = new A2AService( coderAgent, { authHandler } );
+const a2aService2 = new A2AService( coderAgent, { agentSessionResolver } );
 app.use("/users/:uid/coder", a2aService2.routes() );
 
 
@@ -73,7 +70,7 @@ app.use("/users/:uid/coder", a2aService2.routes() );
 app.use( errorHandler );
 
 
-//==== Example 3: Agent Profile REST agent with authentication ====
+//==== Example 3: Agentic Profile REST agent with authentication ====
 app.put( "/users/:uid/agent-chats", asyncHandler( async (req, res ) => {
     const { uid } = req.params;
 

@@ -1,8 +1,18 @@
 #!/usr/bin/env node
 
+import { join } from "path";
+import os from "os";
+
 import {
-    argv
+    AGENTIC_CHALLENGE_TYPE,
+    generateAuthToken
+} from "@agentic-profile/auth";
+import {
+    argv,
+    loadProfileAndKeyring
 } from "@agentic-profile/express-common";
+import { pruneFragmentId } from "@agentic-profile/common";
+
 import readline from "node:readline";
 import crypto from "node:crypto";
 import { A2AClient } from "./client/client.js";
@@ -48,9 +58,17 @@ function generateTaskId(): string {
 
 // --- Command line options ---
 const ARGV_OPTIONS: argv.ArgvOptions = {
+    iam: {
+        type: "string",
+        short: "i"
+    },
     peerAgentUrl: {
         type: "string",
-        short: "a"
+        short: "p"
+    },
+    userAgentDid: {
+        type: "string",
+        short: "u"
     }
 };
 
@@ -63,7 +81,9 @@ const { values } = argv.parseArgs({
     options: ARGV_OPTIONS
 });
 const {
-    peerAgentUrl = `http://localhost:${port}/agents/coder/`
+    iam = "global-me",
+    peerAgentUrl = `http://localhost:${port}/agents/coder/`,
+    userAgentDid = "#agent-chat"
 } = values;
 
 // --- State ---
@@ -206,11 +226,7 @@ async function main() {
         agentCard
     } = agentContext;
 
-    const authHandler = {
-        headers: () => ({ Authorization: "Agentic nosecret"}),
-        process401: async (fetchResponse:Response) => true,
-        onSuccess: async () => {}
-    };
+    const authHandler = await createAuthHandler( iam as string, userAgentDid as string );
     const client = new A2AClient( agentCard.url, { authHandler } );
 
     console.log(colorize("dim", `Starting Task ID: ${currentTaskId}`));
@@ -282,3 +298,39 @@ async function main() {
 
 // --- Start ---
 main();
+
+async function createAuthHandler( iamProfile: string = "global-me", userAgentDid: string ) {
+    const myProfileAndKeyring = await loadProfileAndKeyring( join( os.homedir(), ".agentic", "iam", iamProfile ) );
+    const headers = {} as any;
+
+    const { documentId, fragmentId } = pruneFragmentId( userAgentDid );
+    const agentDid = documentId ? userAgentDid : myProfileAndKeyring.profile.id + fragmentId;
+
+    const authHandler = {
+        headers: () => headers,
+        process401: async (fetchResponse:Response) => {
+            const agenticChallenge = await fetchResponse.json();
+            if( agenticChallenge.type !== AGENTIC_CHALLENGE_TYPE )
+                throw new Error(`Unexpected 401 response ${agenticChallenge}`);
+
+            const authToken = await generateAuthToken({
+                agentDid,
+                agenticChallenge,
+                profileResolver: async (did:string) => {
+                    const { documentId } = pruneFragmentId( did );
+                    if( documentId !== myProfileAndKeyring.profile.id )
+                        throw new Error(`Failed to resolve agentic profile for ${did}`);
+                    return myProfileAndKeyring;
+                }
+            });
+            headers.Authorization = `Agentic ${authToken}`;
+            return true;
+        },
+        onSuccess: async () => {}
+    };
+
+    return authHandler;
+}
+
+// ({ Authorization: "Agentic nosecret"})
+

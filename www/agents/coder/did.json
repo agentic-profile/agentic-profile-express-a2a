@@ -1,0 +1,16 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/did/v1",
+        "https://w3id.org/security/suites/jws-2020/v1",
+        "https://iamagentic.org/ns/agentic-profile/v1"
+    ],
+    "id": "did:web:localhost%3A3003:agents:coder",
+    "service": [
+        {
+            "name": "Secure Coder",
+            "id": "#a2a-coder",
+            "type": "A2A",
+            "serviceEndpoint": "http://localhost:3003/agents/coder/"
+        }
+    ]
+}
