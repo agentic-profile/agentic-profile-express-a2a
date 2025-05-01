@@ -1,9 +1,9 @@
 import { MessageData } from "genkit";
-import { TaskYieldUpdate } from "../../server/handler.js";
+import { TaskYieldUpdate } from "../../service/handler.js";
 import {
   TaskContext,
-  //A2AServer
-} from "../../server/index.js"; // Import server components
+  //A2AService
+} from "../../service/index.js"; // Import service components
 import * as schema from "../../schema.js"; // Import schema for types
 import { ai } from "./genkit.js";
 import { CodeMessage } from "./code-format.js"; // CodeMessageSchema might not be needed here
@@ -179,13 +179,13 @@ const coderAgentCard: schema.AgentCard = {
 
 console.log( "coder card", JSON.stringify(coderAgentCard,null,4));
 
-const server = new A2AServer(coderAgent, {
+const service = new A2AService(coderAgent, {
   //card: coderAgentCard,
 });
 
-server.start(); // Default port 41241
+service.start(); // Default port 41241
 
-console.log("[CoderAgent] Server started on http://localhost:41241");
-console.log("[CoderAgent] Press Ctrl+C to stop the server");
+console.log("[CoderAgent] Service started on http://localhost:41241");
+console.log("[CoderAgent] Press Ctrl+C to stop the service");
 
 */

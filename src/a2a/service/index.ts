@@ -1,11 +1,11 @@
 /**
- * Main entry point for the A2A Server V2 library.
+ * Main entry point for the A2A Service V2 library.
  * Exports the server class, store implementations, and core types.
  */
 
 // Export the main server class and its options
-export { A2AServer } from "./server.js";
-export type { A2AServerOptions } from "./server.js";
+export { A2AService } from "./service.js";
+export type { A2AServiceOptions } from "./service.js";
 
 // Export handler-related types
 export type { TaskHandler, TaskContext, TaskYieldUpdate } from "./handler.js";

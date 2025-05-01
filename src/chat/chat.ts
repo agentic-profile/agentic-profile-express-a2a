@@ -1,4 +1,3 @@
-/*
 import {
     ChatCompletionResult,
     selectAIProvider
@@ -60,4 +59,3 @@ function introduceMyself( user: User, userAgentDid: DID ): ChatCompletionResult 
 function storage() {
     return agentHooks<ChatHooks>().storage;
 }
-*/

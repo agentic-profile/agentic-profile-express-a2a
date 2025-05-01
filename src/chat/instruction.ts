@@ -1,4 +1,3 @@
-/*
 import {
    replacePlaceholders,
    User
@@ -25,4 +24,3 @@ export function buildInstruction( user: User, userGoals: string | undefined ) {
     const parts = [ role, userGoals ?? DEFAULT_GOAL ];
     return parts.join('\n\n');
 }
-*/

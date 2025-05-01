@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare": "tsup",
+    "a2a:cli": "npx tsx src/a2a/cli.ts",
     "dev": "yarn build; node --inspect index.local.js",
     "build": "tsup",
     "test": "jest"
@@ -50,5 +51,8 @@
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"
   },
-  "packageManager": "yarn@4.8.1"
+  "packageManager": "yarn@4.8.1",
+  "resolutions": {
+    "@agentic-profile/express-common": "portal:/Users/mike/projects/iamagentic/agentic-profile-express-common"
+  }
 }

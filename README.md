@@ -86,7 +86,7 @@ hosting temporary profiles for teating.
         }
     }
 
-5. Send a chat message.  This script automatically handles the challenge and generates an authorization token from the global agentic profile in step #3.
+5. Send a chat message.  This script automatically handles the challenge and generates an authorization token from the global agentic profile in step #4.
 
     $ node scripts/send-chat-message 
 
@@ -105,3 +105,18 @@ NOTE: The following instructions assume you have created an agentic service at h
 2. Send a chat message.  This script automatically handles the challenge and generates an authorization token from the global agentic profile in step #1.
 
     $ node scripts/send-chat-message -a https://agents.smarterdating.ai/users/2/agent-chats
+
+
+## Test the A2A agent
+
+1. Make sure the server is started:
+
+    $ yarn dev
+
+2. Fron a different terminal window, start the A2A client:
+
+    ```bash
+    npm run a2a:cli
+    ```
+
+3. Type in a prompt for the A2A client, such as "Write a program that says Hello world!"
