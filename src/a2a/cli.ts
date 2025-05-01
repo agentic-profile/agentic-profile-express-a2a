@@ -1,3 +1,11 @@
+/**
+ * This file is derived from https://github.com/google/A2A.git
+ * and under the Apache 2.0 License.
+ * 
+ * It has been modified to add support for the Agentic Profile, as
+ * well as other enhancements.
+ */
+
 #!/usr/bin/env node
 
 import { join } from "path";
@@ -29,8 +37,6 @@ import {
     // Other types needed for message/part handling
     FilePart,
     DataPart,
-    // Type for the agent card
-    //AgentCard,
 } from "./schema.js";
 
 // --- ANSI Colors ---
@@ -219,12 +225,7 @@ async function main() {
 
     const agentContext = await resolveAgent( peerAgentUrl as string );
     displayAgentCard( agentContext );
-    const {
-        //profileUrl,
-        //agenticProfile,
-        //agentCardUrl,
-        agentCard
-    } = agentContext;
+    const { agentCard } = agentContext;
 
     const authHandler = await createAuthHandler( iam as string, userAgentDid as string );
     const client = new A2AClient( agentCard.url, { authHandler } );
@@ -331,6 +332,3 @@ async function createAuthHandler( iamProfile: string = "global-me", userAgentDid
 
     return authHandler;
 }
-
-// ({ Authorization: "Agentic nosecret"})
-

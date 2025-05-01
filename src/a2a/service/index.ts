@@ -1,4 +1,12 @@
 /**
+ * This file is derived from https://github.com/google/A2A.git
+ * and under the Apache 2.0 License.
+ * 
+ * It has been modified to add support for the Agentic Profile, as
+ * well as other enhancements.
+ */
+
+/**
  * Main entry point for the A2A Service V2 library.
  * Exports the server class, store implementations, and core types.
  */
