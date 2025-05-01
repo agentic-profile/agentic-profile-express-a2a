@@ -120,3 +120,14 @@ NOTE: The following instructions assume you have created an agentic service at h
     ```
 
 3. Type in a prompt for the A2A client, such as "Write a program that says Hello world!"
+
+
+## More testing with Curl
+
+    $ curl -X POST http://localhost:3003/agents/coder
+
+    $ curl -X POST http://localhost:3003/users/2/coder
+
+    $ curl -v -X PUT http://localhost:3003/users/2/agent-chats
+
+

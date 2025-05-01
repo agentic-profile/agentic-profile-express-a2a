@@ -198,9 +198,12 @@ export class A2AService {
 
             try {
                 // 0. Authenticate client agent
-                const agentSession = this.agentSessionResolver?.( req, res );
-                if( !agentSession )
-                    return; // 401 response with challenge already issued
+                let agentSession: ClientAgentSession | null;
+                if( this.agentSessionResolver ) {
+                    agentSession = await this.agentSessionResolver( req, res );
+                    if( !agentSession )
+                        return; // 401 response with challenge already issued
+                }
 
                 // 1. Validate basic JSON-RPC structure
                 if (!this.isValidJsonRpcRequest(requestBody)) {

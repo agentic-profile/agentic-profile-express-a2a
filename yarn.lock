@@ -68,16 +68,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@agentic-profile/express-common@portal:/Users/mike/projects/iamagentic/agentic-profile-express-common::locator=%40agentic-profile%2Fexpress-a2a%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@agentic-profile/express-common@portal:/Users/mike/projects/iamagentic/agentic-profile-express-common::locator=%40agentic-profile%2Fexpress-a2a%40workspace%3A."
+"@agentic-profile/express-common@npm:^0.4.13":
+  version: 0.4.14
+  resolution: "@agentic-profile/express-common@npm:0.4.14"
   dependencies:
     "@agentic-profile/auth": "npm:^0.4.10"
     cors: "npm:^2.8.5"
     express: "npm:^4.21.1"
     morgan: "npm:^1.10.0"
+  checksum: 10c0/1cf451e95c89a0f2ba54fa8ac4918e05e1dc7d52e2ea542061cddb6760207c784941e07267341114556be64a8f1c35899709bb6084412add414b57613db26b6a
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@babel/runtime@npm:^7.26.10":
   version: 7.27.0
