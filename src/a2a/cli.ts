@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * This file is derived from https://github.com/google/A2A.git
  * and under the Apache 2.0 License.
@@ -5,8 +7,6 @@
  * It has been modified to add support for the Agentic Profile, as
  * well as other enhancements.
  */
-
-#!/usr/bin/env node
 
 import { join } from "path";
 import os from "os";
