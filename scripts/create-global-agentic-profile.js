@@ -1,4 +1,5 @@
 import 'dotenv/config';
+
 import os from "os";
 import { join } from "path";
 import {
@@ -28,7 +29,7 @@ import {
 
     try {
     	// publish profile to web (so did:web:... will resolve)
-        let { data } = await postJson(
+        const { data } = await postJson(
             "https://testing.agenticprofile.ai/agentic-profile",
             { profile, b64uPublicKey }
         );
@@ -50,27 +51,6 @@ Or via DID at:
         console.log(`Saved agentic profile to ${dir}
 
 Shhhh! Keyring for testing... ${prettyJson( keyring )}`);
-
-        // create account # 2, which will be the account represented/billed for user/2/agent-chats
-        const payload = {
-            options: { uid: 2 },        // force to uid=2
-            fields: {
-                name: "Eric Portman",   // #2 in the Prisoner ;)
-                credit: 10              // $10
-            }
-        };
-        const config = {
-            headers: {
-                Authorization: `Bearer ${process.env.ADMIN_TOKEN}`,
-            },
-        };
-        ({ data } = await postJson(
-            `http://localhost:${port}/accounts`,
-            payload,
-            config
-        ));
-
-        console.log( "Created local account uid=2 to act as peer in agentic chat", prettyJson( data ));
     } catch (error) {
         console.error( "Failed to create global profile", error );
     }

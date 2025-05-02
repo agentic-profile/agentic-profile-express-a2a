@@ -4,7 +4,7 @@
         "https://w3id.org/security/suites/jws-2020/v1",
         "https://iamagentic.org/ns/agentic-profile/v1"
     ],
-    "id": "did:web:localhost%3A3003",
+    "id": "did:web:localhost:3003",
     "verificationMethod": [
         {
             "id": "#identity-key",
@@ -13,25 +13,25 @@
                 "kty": "OKP",
                 "alg": "EdDSA",
                 "crv": "Ed25519",
-                "x": "6EVHWPcPSJgxkTnjLWYLtjhHjIFWohzHnp9yelwJq6A"
+                "x": "JYP0CicW9Zb0CdPBqmie1LoEDwsR8bo2KpbWMbgx4go"
             }
         }
     ],
     "service": [
         {
-            "name": "Secure Coder",
+            "name": "Secure A2A coder",
             "id": "#a2a-coder",
             "type": "A2A",
-            "serviceEndpoint": "http://localhost:3003/users/2/coder/",
+            "serviceEndpoint": "http://localhost:3003",
             "capabilityInvocation": [
                 {
-                    "id": "#agent-coder-key-0",
+                    "id": "#agent-a2a-coder-key-0",
                     "type": "JsonWebKey2020",
                     "publicKeyJwk": {
                         "kty": "OKP",
                         "alg": "EdDSA",
                         "crv": "Ed25519",
-                        "x": "ZESf0Wm6aAyYWFgttPywpDmlLhzTo7BNZXxq54ht0EE"
+                        "x": "mS1GOiMTUBA1BqmRN20hYETltn7dqCqxlyyYMwBw9zw"
                     }
                 }
             ]
